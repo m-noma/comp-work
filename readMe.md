@@ -1,2 +1,2 @@
 watch me !
-clear a
+clear 
