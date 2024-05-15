@@ -1,4 +1,8 @@
-from CalucWinRate import rolette
+from CalucWinRate import Rolette
+from CalucWinRate import Rolette1
 
-winning_rate = rolette(2)
-print(winning_rate)
+
+
+print("{}".format(Rolette1(1,2)))
+
+print("win_rate: {}".format(Rolette(2).winning_rate))
