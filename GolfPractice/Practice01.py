@@ -1,49 +1,41 @@
 import re
 
-class Golf:
-    def __init__(self, hole_data):
-        print("golefクラス作成")
-        self.hole_data = hole_data
-
-    
-class GolfGame:
-    def __init__(self, player_name, hole_data, input_score):
-        print("golf_game")
-
-
-class Hole:
-    def __init__(self, par_num):
-        self.par_num = par_num
-
-
-class Player:
-    def __init__(self, player_name, input_score):
-        self.player_name = player_name
-        self.input_score = input_score
-
-
 # 入力を受け付ける
 def input_score():
-    input_str = input()
+    input_str = input("スコア入力: ")
     return input_str
 
 # 引数で与えられた文字列から数字を抜き出す
 def re_base_score(input_str):
-    score_array = re.findall(r"-?\d+", input_str)
-    str_array = re.findall(r"[^0-9^,^ ^-]", input_str)
-    if(0 < len(str_array)):
-        print("指定文字以外が含まれています.\n再度入力して下さい.\n")
+    if(input_str == "help"):
+        print("""入力可能な文字は, 「数字(0-9)」, 「カンマ(,)」, 「半角スペース」のみ「カンマ(,)」は数値の区切り文字とする""")
         return re_base_score(input_score())
-    if(len(score_array) <= 0):
-        # ↓入力が"-"のみの場合「空白です」に入ってしまう...
-        print("空白です.\n再度入力してください.\n")
-        return re_base_score(input_score())
+    # elif(input_str == r"[- ,]"):
+    #     print("指定文字以外が含まれています.\n再度入力して下さい.\n")
+    #     return re_base_score(input_score())
     else:
-        for score in score_array:
-            if(int(score) <= 0):
-                print("0以下の値が含まれます.\n再度入力してください.\n")
-                return re_base_score(input_score())
-        return score_array
+        # 空白をまず消し、その後数字を取得する(,区切りで数字を見るため "2 2"を2,2と取りたい場合は.replaceを削除)
+        # "3 -5"がはじけない現状だと[3,-5]となってしまうため
+        score_array = re.findall(r"-?\d+", input_str.replace(" ", ""))
+        print("入力値: {}".format(score_array))
+        # 指定文字以外の配列を作る
+        str_array = re.findall(r"[^0-9^,^ ^-]", input_str)
+        if(0 < len(re.findall(r"[^0-9^,^ ^-]", input_str))):
+            print("指定文字以外が含まれています.\n再度入力して下さい.\n")
+            return re_base_score(input_score())
+        if(0 < len(re.findall(r'\b\d+\-\d+\b', input_str))):
+            print("計算分を入れないでください.\n再度入力してください.\n")
+            return re_base_score(input_score())
+        if(len(score_array) <= 0):
+            # ↓入力が"-"のみの場合「空白です」に入ってしまう...
+            print("空白です.\n再度入力してください.\n")
+            return re_base_score(input_score())
+        else:
+            for score in score_array:
+                if(int(score) <= 0):
+                    print("0以下の値が含まれます.\n再度入力してください.\n")
+                    return re_base_score(input_score())
+            return score_array
 
 # スコアを計算し, ポイントの形に変換. (1: パーの値, 2: プレーヤーのスコア)
 def calc_score(par_num, input_score):
