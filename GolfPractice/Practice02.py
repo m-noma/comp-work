@@ -1,36 +1,40 @@
 import re
 
 
-# class Golf:
-#     def __init__(self, hole_score_array):
-#         self.hole_score_array = hole_score_array
-    
-#     def game_start():
-#         return 0
-
-
-class GolfPlayer:
-    def __init__(self, hole_score_array, player_name, player_score_array):
+class Golf:
+    def __init__(self, hole_score_array, player_array):
         self.hole_score_array = hole_score_array
-        self.player_name = player_name
-        self.player_score_array = player_score_array
-        
+        self.player_array = player_array
+
     # 最終ホール計算
     def total_hole_num(self):
-        if(len(self.hole_score_array) < len(self.player_score_array)):
-            result = len(self.hole_score_array)
-        elif(len(self.player_score_array) < len(self.hole_score_array)):
-            result = len(self.player_score_array)
-        elif(len(self.player_score_array) == len(self.hole_score_array)):
-            result = len(self.player_score_array)
+        result = []
+        for i in self.player_array:
+            if(len(self.hole_score_array) < len(self.player_array[i][1])):
+                result = len(self.hole_score_array)
+            elif(len(self.player_array[i][1]) < len(self.hole_score_array)):
+                result = len(self.player_array[i][1])
+            elif(len(self.player_array[i][1]) == len(self.hole_score_array)):
+                result = len(self.player_array[i][1])
         return result
-
+    
     # スコアを計算し, ポイントの形に変換. (1: パーの値, 2: プレーヤーのスコア)
     def calc_score(self, total_hole_num):
         total_score = 0
         for i in range(total_hole_num):
             total_score += int(self.player_score_array[i]) - int(self.hole_score_array[i])
         return total_score
+    
+    
+
+
+class GolfPlayer:
+    def __init__(self, player_name, player_score_array):
+        self.player_name = player_name
+        self.player_score_array = player_score_array
+    
+
+    
     
     # スコアの表記方法を改良する 
     def score_conversion(self, calc_num):
@@ -52,11 +56,12 @@ class GolfPlayer:
                                             self.score_conversion(self.calc_score(total_hole_num))))
 
 # 人数の入力を受け付ける
-def 
+def input_player_num():
+    input_mun = input("人数を入力: ")
 
 # ゴルフプレイの入力を受け付ける
 def input_score():
-    input_str = input("スコア入力: ")
+    input_str = input("データの入力: ")
     return input_str
 
 # 引数で与えられた文字列から数字を抜き出す
