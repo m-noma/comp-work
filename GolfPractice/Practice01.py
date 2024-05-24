@@ -1,6 +1,5 @@
 import re
 
-
 class Golf:
     def __init__(self, hole_score_array, player_array):
         self.hole_score_array = hole_score_array
@@ -24,17 +23,11 @@ class Golf:
         for i in range(total_hole_num):
             total_score += int(self.player_score_array[i]) - int(self.hole_score_array[i])
         return total_score
-    
-    
-
 
 class GolfPlayer:
     def __init__(self, player_name, player_score_array):
         self.player_name = player_name
         self.player_score_array = player_score_array
-    
-
-    
     
     # スコアの表記方法を改良する 
     def score_conversion(self, calc_num):
