@@ -113,10 +113,7 @@ def re_base_array(player_num, constant_array, input_array):
     return score_array
 
 def main():
-    constant_array = [4, 4, 3, 4, 5,
-                        4, 5, 3, 4, 4,
-                        3, 4, 5, 4, 3,
-                        4, 5, 4]
+    constant_array = [4, 4, 3, 4, 5, 4, 5, 3, 4, 4, 3, 4, 5, 4, 3, 4, 5, 4]
     player_list = []
     input_player_num = int(input("人数を入力: "))
     input_player_data = input("データ入力: ")
