@@ -1,3 +1,4 @@
+# 平岩
 def kara(x):
     print("oooo")
     print(len(x))

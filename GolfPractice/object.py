@@ -1,3 +1,4 @@
+# 渡辺
 import re
 class score:
     def __init__(self,per):
