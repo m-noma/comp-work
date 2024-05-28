@@ -77,5 +77,12 @@ def main():
     print_score(calculate_score(player1.result))
     print_score(calculate_score(player2.result))
 
+    if(calculate_score(player1.result)<calculate_score(player2.result)):
+        print("勝者は",player1.name)
+    elif(calculate_score(player1.result)==calculate_score(player2.result)):
+        print("引き分け")
+    else:
+        print("勝者は",player2.name)
+
 if __name__ == "__main__":
     main()
